@@ -135,7 +135,7 @@ export default function AIDashboard() {
     setLoading(true);
     setInsight("Scanning for anomalies and trends...");
     try {
-      const response = await axios.post('http://localhost:5000/api/analyze', { query, dataPreview: data.slice(0, 30), anomaliesFound: anomalies.length });
+      const response = await axios.post('https://ai-dashboard-backend-pimk.onrender.com/api/analyze', { query, dataPreview: data.slice(0, 30), anomaliesFound: anomalies.length });
       setInsight(response.data.insight);
     } catch (err) {
       setInsight(`Analyzed ${data.length} rows. Found ${anomalies.length} potential anomalies in ${headers[1]}. Data seems trending ${Number(data[data.length-1][headers[1]]) > Number(data[0][headers[1]]) ? 'Upward' : 'Downward'}.`);
